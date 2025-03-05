@@ -20,6 +20,7 @@
 		<mapstruct.version>1.6.2</mapstruct.version>
 		<postgresql.version>42.7.4</postgresql.version>
 		<flyway.version>10.20.0</flyway.version>
+		<flyway-maven.version>10.20.0</flyway-maven.version>
 	</properties>
 
 	<dependencies>
@@ -101,6 +102,12 @@
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
+
+			</plugin>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>${flyway-maven.version}</version>
 			</plugin>
 		</plugins>
 	</build>
