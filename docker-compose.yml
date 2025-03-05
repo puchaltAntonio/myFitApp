@@ -1,0 +1,42 @@
+services:
+
+  #------------------------------
+  # API DATABASE SECTION
+
+  my-fit-app-dev-db:
+    image: bitnami/postgresql:15.3.0
+    container_name: my-fit-app-dev-db
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=my-fit-app-dev-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - my-fit-app-dev-db-volume:/bitnami/postgresql
+    networks:
+      - my-fit-app-dev-net
+      - my-fit-app-dev-db-net
+
+  my-fit-app-dev-pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: my-fit-app-dev-pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@mail.com
+      - PGADMIN_DEFAULT_PASSWORD=admin1234
+    ports:
+      - "9050:80"
+    depends_on:
+      - my-fit-app-dev-db
+    volumes:
+      - my-fit-app-dev-pgadmin-volume:/var/lib/pgadmin
+    networks:
+      - my-fit-app-dev-net
+      - my-fit-app-dev-db-net
+
+volumes:
+  my-fit-app-dev-db-volume:
+  my-fit-app-dev-pgadmin-volume:
+networks:
+  my-fit-app-dev-net:
+  my-fit-app-dev-db-net:
