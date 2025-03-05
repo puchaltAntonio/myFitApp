@@ -19,8 +19,8 @@
 		<lombok.version>1.18.34</lombok.version>
 		<mapstruct.version>1.6.2</mapstruct.version>
 		<postgresql.version>42.7.4</postgresql.version>
-		<flyway.version>10.20.0</flyway.version>
-		<flyway-maven.version>10.20.0</flyway-maven.version>
+		<flyway.version>9.21.1</flyway.version>
+		<flyway-maven.version>9.21.1</flyway-maven.version>
 	</properties>
 
 	<dependencies>
