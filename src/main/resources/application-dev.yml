@@ -1,0 +1,23 @@
+spring:
+  config:
+    import: optional:file:api.env.dev[.properties]
+  datasource:
+    url: ${POSTGRES_DB_URL}
+    driver-class-name: org.postgresql.Driver
+    username: ${POSTGRES_DB_USER}
+    password: ${POSTGRES_DB_PASSWORD}
+  flyway:
+    enabled: true
+  jpa:
+    database: POSTGRESQL
+    open-in-view: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          batch_size: 15
+          lob:
+            non_contextual_creation: true
+          order_inserts: true
+    show-sql: true
