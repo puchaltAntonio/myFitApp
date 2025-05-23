@@ -8,6 +8,7 @@ import java.util.TimeZone;
 
 @SpringBootApplication
 public class MyfitappApplication {
+	public static final String DEV_PROFILE = "dev";
 
 	public static void main(String[] args) {
 		TimeZone.setDefault(TimeZone.getTimeZone(TimeZoneConfig.DEFAULT_TIME_ZONE) );
