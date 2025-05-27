@@ -1,5 +1,6 @@
 package com.learning.myfitapp.modules.exercise.infrastructure.persistance.entities;
 
+import com.learning.myfitapp.modules.exercise.domain.models.EquipmentEnum;
 import com.learning.myfitapp.modules.exercise.domain.models.MuscleEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -39,12 +40,12 @@ public class ExerciseJpaEntity {
     private MuscleEnum primaryMuscle;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = SECONDARY_MUSCLE_COL, nullable = false)
+    @Column(name = SECONDARY_MUSCLE_COL)
     private MuscleEnum secondaryMuscle;
 
     @Enumerated(EnumType.STRING)
     @Column(name = EQUIPMENT, nullable = false)
-    private MuscleEnum equipment;
+    private EquipmentEnum equipment;
 
     @Column(name = EXERCISE_ANIMATION)
     private String animation;
