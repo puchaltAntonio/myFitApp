@@ -1,5 +1,6 @@
 package com.learning.myfitapp.modules.exercise.application.usecases.createexercise;
 
+import com.learning.myfitapp.modules.exercise.application.repositories.ExerciseRepository;
 import com.learning.myfitapp.modules.exercise.domain.models.EquipmentEnum;
 import com.learning.myfitapp.modules.exercise.domain.models.Exercise;
 import com.learning.myfitapp.modules.exercise.domain.models.MuscleEnum;
@@ -13,14 +14,22 @@ import java.util.UUID;
 @Transactional
 @RequiredArgsConstructor
 public class CreateExerciseUseCaseImpl implements CreateExerciseUseCase{
+
+    private final ExerciseRepository exerciseRepository;
+
     @Override
-    public Exercise createExercise(CreateExerciseUseCaseRequest createExerciseUseCaseRequest) {
-        return new Exercise(
-                UUID.randomUUID(),
-                "Ejercicio 1",
-                MuscleEnum.ABDOMINALS,
-                MuscleEnum.ADDUCTORS,
-                EquipmentEnum.DUMBBELL
-                );
+    public Exercise createExercise(CreateExerciseUseCaseRequest request) {
+
+        final Exercise exercise = new Exercise(
+                null,
+                request.getName(),
+                request.getPrimaryMuscle(),
+                request.getSecondaryMuscle(),
+                request.getEquipment()
+        );
+
+        // validateFieldConstraints
+
+        return exerciseRepository.save(exercise);
     }
 }
