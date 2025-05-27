@@ -26,4 +26,6 @@ public class Exercise {
         this.secondaryMuscle = secondaryMuscle;
         this.equipment = equipment;
     }
+
+    //TODO: ADD validateFieldConstraints method
 }
