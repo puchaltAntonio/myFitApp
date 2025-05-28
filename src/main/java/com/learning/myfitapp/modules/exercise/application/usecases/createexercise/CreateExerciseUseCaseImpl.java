@@ -1,14 +1,10 @@
 package com.learning.myfitapp.modules.exercise.application.usecases.createexercise;
 
 import com.learning.myfitapp.modules.exercise.application.repositories.ExerciseRepository;
-import com.learning.myfitapp.modules.exercise.domain.models.EquipmentEnum;
 import com.learning.myfitapp.modules.exercise.domain.models.Exercise;
-import com.learning.myfitapp.modules.exercise.domain.models.MuscleEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.UUID;
 
 @Service
 @Transactional
@@ -27,9 +23,6 @@ public class CreateExerciseUseCaseImpl implements CreateExerciseUseCase{
                 request.getSecondaryMuscle(),
                 request.getEquipment()
         );
-
-        // validateFieldConstraints
-
         return exerciseRepository.save(exercise);
     }
 }
