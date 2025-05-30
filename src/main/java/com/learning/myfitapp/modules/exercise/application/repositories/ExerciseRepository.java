@@ -8,4 +8,6 @@ import java.util.UUID;
 public interface ExerciseRepository {
     Exercise save(final Exercise exercise);
     Optional<Exercise> findById(final UUID id);
+    void deleteById(final UUID id);
+    Boolean existsById(final UUID id);
 }
