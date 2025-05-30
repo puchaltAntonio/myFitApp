@@ -18,7 +18,7 @@
 		<spring-boot.version>3.4.3</spring-boot.version>
 		<lombok.version>1.18.34</lombok.version>
 		<mapstruct.version>1.6.2</mapstruct.version>
-		<swagger.version>2.3.0</swagger.version>
+		<swagger.version>2.7.0</swagger.version>
 		<postgresql.version>42.7.4</postgresql.version>
 		<flyway.version>9.21.1</flyway.version>
 		<flyway-maven.version>9.21.1</flyway-maven.version>

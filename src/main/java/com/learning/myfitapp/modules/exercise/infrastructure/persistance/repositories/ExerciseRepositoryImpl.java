@@ -8,6 +8,9 @@ import com.learning.myfitapp.modules.exercise.infrastructure.persistance.reposit
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Repository
 @RequiredArgsConstructor
 public class ExerciseRepositoryImpl implements ExerciseRepository {
@@ -24,5 +27,11 @@ public class ExerciseRepositoryImpl implements ExerciseRepository {
         return EXERCISE_JPA_MAPPER.jpaToExercise(
                 exerciseJpaRepository.save(exerciseJpaEntity)
         );
+    }
+
+    @Override
+    public Optional<Exercise> findById(UUID id) {
+        return exerciseJpaRepository.findById(id)
+                .map(EXERCISE_JPA_MAPPER::jpaToExercise);
     }
 }
