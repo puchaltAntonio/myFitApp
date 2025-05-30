@@ -34,4 +34,16 @@ public class ExerciseRepositoryImpl implements ExerciseRepository {
         return exerciseJpaRepository.findById(id)
                 .map(EXERCISE_JPA_MAPPER::jpaToExercise);
     }
+
+    @Override
+    public void deleteById(UUID id) {
+        exerciseJpaRepository.deleteById(id);
+    }
+
+    @Override
+    public Boolean existsById(UUID id) {
+        return exerciseJpaRepository.existsById(id);
+    }
+
+
 }
