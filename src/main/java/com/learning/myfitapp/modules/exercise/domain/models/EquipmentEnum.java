@@ -1,6 +1,6 @@
 package com.learning.myfitapp.modules.exercise.domain.models;
 
-public enum Equipment {
+public enum EquipmentEnum {
     ALL_EQUIPMENT,
     NONE,
     BARBELL,
