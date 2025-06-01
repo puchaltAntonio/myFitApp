@@ -1,6 +1,5 @@
 package com.learning.myfitapp.modules.workoutsession.infrastructure.persistance.entity;
 
-import com.learning.myfitapp.modules.profile.infrastructure.persistance.entities.ProfileJpaEntity;
 import com.learning.myfitapp.modules.workout.infrastructure.persistance.entities.WorkoutJpaEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
