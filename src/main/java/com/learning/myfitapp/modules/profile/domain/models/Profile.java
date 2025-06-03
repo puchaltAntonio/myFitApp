@@ -16,7 +16,6 @@ public class Profile {
 
     private String username;
 
-    //private List<Workout> workouts;
 
     public Profile(UUID id, String username) {
 
