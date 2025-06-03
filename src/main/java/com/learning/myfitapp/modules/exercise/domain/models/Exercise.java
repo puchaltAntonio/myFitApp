@@ -1,7 +1,7 @@
 package com.learning.myfitapp.modules.exercise.domain.models;
 
-import com.learning.myfitapp.modules.exercise.domain.exceptions.ExerciseErrorField;
-import com.learning.myfitapp.modules.exercise.domain.exceptions.ExerciseValidationException;
+import com.learning.myfitapp.common.domain.exception.DomainErrorField;
+import com.learning.myfitapp.common.domain.exception.DomainValidationException;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -47,21 +47,21 @@ public class Exercise {
             MuscleEnum secondaryMuscle,
             EquipmentEnum equipment
     ) {
-        final List<ExerciseErrorField> errors = new ArrayList<>();
+        final List<DomainErrorField> errors = new ArrayList<>();
 
         if (name == null || name.isBlank()) {
-            errors.add(new ExerciseErrorField("name", "Name can not be blank."));
+            errors.add(new DomainErrorField("name", "Name can not be blank."));
         }
         if (name != null && name.length() > 60) {
-            errors.add(new ExerciseErrorField("name", "Name's max length is 60 characters."));
+            errors.add(new DomainErrorField("name", "Name's max length is 60 characters."));
         }
 
         if (primaryMuscle == null || primaryMuscle.name().isBlank()) {
-            errors.add(new ExerciseErrorField("primaryMuscle", "Primary muscle can not be blank."));
+            errors.add(new DomainErrorField("primaryMuscle", "Primary muscle can not be blank."));
         }
 
         if (!errors.isEmpty()) {
-            throw new ExerciseValidationException(errors);
+            throw new DomainValidationException(errors);
         }
     }
 }
