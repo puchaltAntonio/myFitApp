@@ -1,6 +1,5 @@
 package com.learning.myfitapp.modules.profile.application.usecases.createprofile;
 
-import com.learning.myfitapp.modules.exercise.application.repositories.ExerciseRepository;
 import com.learning.myfitapp.modules.profile.application.repositories.ProfileRepository;
 import com.learning.myfitapp.modules.profile.domain.models.Profile;
 import lombok.RequiredArgsConstructor;
