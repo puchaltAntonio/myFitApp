@@ -24,7 +24,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         List<ApiParamErrorField> errorFields = ex.getErrors().stream()
                 .map(
                         error -> new ApiParamErrorField(
-                                error.getField(), error.getMessage()
+                                error.field(), error.message()
                         )
                 )
                 .toList();
