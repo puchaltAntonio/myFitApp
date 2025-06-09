@@ -12,13 +12,12 @@ public interface WorkoutJpaMapper {
 
     @Mapping(target = "id", source = "id")
     @Mapping(target = "name", source = "name")
-    @Mapping(target = "exercises", source = "workoutExercises")
+    @Mapping(target = "exercises", ignore = true)
     @Mapping(target = "profile.id", source = "profileId")
     WorkoutJpaEntity domainToJpa(final Workout workout);
 
     @Mapping(target = "id", source = "id")
     @Mapping(target = "name", source = "name")
-    @Mapping(target = "workoutExercises", source = "exercises")
     @Mapping(target = "profileId", source = "profile.id")
     Workout jpaToDomain(final WorkoutJpaEntity workout);
 }
