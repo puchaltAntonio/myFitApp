@@ -17,9 +17,8 @@ public class Workout {
 
     private UUID profileId;
 
-    private List<WorkoutExercise> workoutExercises;
 
-    public Workout(UUID id, String name, UUID profileId, List<WorkoutExercise> workoutExercises) {
+    public Workout(UUID id, String name, UUID profileId) {
 
         validateConstraints(
                 name
@@ -28,7 +27,6 @@ public class Workout {
         this.id = id;
         this.name = name;
         this.profileId = profileId;
-        this.workoutExercises = workoutExercises;
     }
 
     public static void validateConstraints(String name) {
