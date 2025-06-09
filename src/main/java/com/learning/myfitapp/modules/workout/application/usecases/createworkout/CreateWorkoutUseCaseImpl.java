@@ -12,6 +12,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.IntStream;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -27,9 +31,6 @@ public class CreateWorkoutUseCaseImpl implements CreateWorkoutUseCase{
         getProfileUseCase.getProfile(request.getProfileId());
 
 
-
-
-
         Workout savedWorkout = workoutRepository.save(
                 new Workout(
                         null,
@@ -38,15 +39,17 @@ public class CreateWorkoutUseCaseImpl implements CreateWorkoutUseCase{
                 )
         );
 
-        request.getWorkoutExercises().forEach(
-                e -> {
-                    CreateWorkoutExerciseUseCaseRequest useCaseRequest = new CreateWorkoutExerciseUseCaseRequest();
-                    useCaseRequest.setWorkoutId(savedWorkout.getId());
-                    useCaseRequest.setExerciseId(e.getExerciseId());
-                    useCaseRequest.setOrder(e.getOrder());
-                    createWorkoutExerciseUseCase.createWorkoutExercise(useCaseRequest);}
-        );
+        List<UUID> exercisesIds = request.getWorkoutExercisesIds();
 
+        IntStream.range(0, exercisesIds.size()).forEach(i -> {
+            UUID id = exercisesIds.get(i);
+            CreateWorkoutExerciseUseCaseRequest useCaseRequest = new CreateWorkoutExerciseUseCaseRequest();
+            useCaseRequest.setWorkoutId(savedWorkout.getId());
+            useCaseRequest.setExerciseId(id);
+            useCaseRequest.setOrder(i+1);
+            createWorkoutExerciseUseCase.createWorkoutExercise(useCaseRequest);
+
+        });
 
         return savedWorkout;
     }

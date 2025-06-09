@@ -16,5 +16,5 @@ public class CreateWorkoutUseCaseRequest {
 
     private UUID profileId;
 
-    private List<WorkoutExercise> workoutExercises;
+    private List<UUID> workoutExercisesIds;
 }

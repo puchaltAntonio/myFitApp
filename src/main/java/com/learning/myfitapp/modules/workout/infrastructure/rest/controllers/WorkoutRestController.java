@@ -1,10 +1,9 @@
 package com.learning.myfitapp.modules.workout.infrastructure.rest.controllers;
 
 
-import com.learning.myfitapp.modules.exercise.application.usecases.createexercise.CreateExerciseUseCaseRequest;
-import com.learning.myfitapp.modules.exercise.infrastructure.rest.requests.ExerciseRestRequest;
-import com.learning.myfitapp.modules.exercise.infrastructure.rest.responses.ExerciseRestResponse;
+import com.learning.myfitapp.modules.workout.application.usecases.createworkout.CreateWorkoutUseCase;
 import com.learning.myfitapp.modules.workout.application.usecases.createworkout.CreateWorkoutUseCaseRequest;
+import com.learning.myfitapp.modules.workout.infrastructure.rest.mappers.WorkoutRestMapper;
 import com.learning.myfitapp.modules.workout.infrastructure.rest.requests.WorkoutRestRequest;
 import com.learning.myfitapp.modules.workout.infrastructure.rest.responses.WorkoutRestResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -20,7 +19,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
-import static com.learning.myfitapp.modules.exercise.infrastructure.rest.controllers.ExerciseRestController.EXERCISE_REST_MAPPER;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,21 +32,24 @@ public class WorkoutRestController {
 
     public static final String GET_DELETE_AND_UPDATE_EXERCISE_PATH = "/{id}";
 
+    private static final WorkoutRestMapper WORKOUT_REST_MAPPER = WorkoutRestMapper.INSTANCE;
+
+    private final CreateWorkoutUseCase createWorkoutUseCase;
+
 
     @PostMapping
     @Operation(summary = "Create a workout")
-    public ResponseEntity<WorkoutRestResponse> createExercise(
+    public ResponseEntity<WorkoutRestResponse> createWorkout(
             @Valid @RequestBody final WorkoutRestRequest request
     ) {
         final CreateWorkoutUseCaseRequest useCaseRequest = new CreateWorkoutUseCaseRequest();
 
         useCaseRequest.setName(request.name());
-        useCaseRequest.setPrimaryMuscle(request.primaryMuscle());
-        useCaseRequest.setSecondaryMuscle(request.secondaryMuscle());
-        useCaseRequest.setEquipment(request.equipment());
+        useCaseRequest.setWorkoutExercisesIds(request.exercisesIds());
+        useCaseRequest.setProfileId(request.profileId());
 
-        final ExerciseRestResponse response = EXERCISE_REST_MAPPER.exerciseToResponse(
-                createExerciseUseCase.createExercise(useCaseRequest)
+        final WorkoutRestResponse response = WORKOUT_REST_MAPPER.workoutToResponse(
+            createWorkoutUseCase.createWorkout(useCaseRequest)
         );
 
         final URI location = ServletUriComponentsBuilder
