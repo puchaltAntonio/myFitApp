@@ -1,1 +1,0 @@
-ALTER TABLE workout_exercise RENAME COLUMN "order" TO position;

@@ -32,17 +32,19 @@ public class WorkoutRepositoryImpl implements WorkoutRepository {
 
     @Override
     public Optional<Workout> findById(UUID id) {
-        return Optional.empty();
+        return repository
+                .findById(id)
+                .map(WORKOUT_JPA_MAPPER::jpaToDomain);
     }
 
     @Override
     public void deleteById(UUID id) {
-
+        repository.deleteById(id);
     }
 
     @Override
     public Boolean existsById(UUID id) {
-        return null;
+        return repository.existsById(id);
     }
 
     @Override

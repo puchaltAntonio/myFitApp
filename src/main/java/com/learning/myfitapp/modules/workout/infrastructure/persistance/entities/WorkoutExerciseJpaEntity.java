@@ -21,7 +21,7 @@ public class WorkoutExerciseJpaEntity {
     public static final String ID_COL = "id";
     public static final String WORKOUT_ID_COL = "workout_id";
     public static final String EXERCISE_ID_COL = "exercise_id";
-    public static final String ORDER_COL = "position";
+    public static final String ORDER_COL = "order_index";
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
