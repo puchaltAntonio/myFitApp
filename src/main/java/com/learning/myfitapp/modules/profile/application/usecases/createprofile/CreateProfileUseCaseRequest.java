@@ -12,6 +12,4 @@ public class CreateProfileUseCaseRequest {
 
     private String username;
 
-    //TODO: workouts
-
 }
