@@ -1,4 +1,4 @@
-package com.learning.myfitapp.modules.workout.application.usecases.createworkoutexerciseusecase;
+package com.learning.myfitapp.modules.workout.application.usecases.workoutexercise.createworkoutexerciseusecase;
 
 import com.learning.myfitapp.modules.workout.domain.models.WorkoutExercise;
 

@@ -1,6 +1,6 @@
-package com.learning.myfitapp.modules.workout.application.usecases.updateworkout;
+package com.learning.myfitapp.modules.workout.application.usecases.workout.updateworkout;
 
-import com.learning.myfitapp.modules.workout.application.usecases.createworkout.CreateWorkoutUseCaseRequest;
+import com.learning.myfitapp.modules.workout.application.usecases.workout.createworkout.CreateWorkoutUseCaseRequest;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

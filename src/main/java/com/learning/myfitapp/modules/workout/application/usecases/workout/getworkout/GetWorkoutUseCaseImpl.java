@@ -1,4 +1,4 @@
-package com.learning.myfitapp.modules.workout.application.usecases.getworkout;
+package com.learning.myfitapp.modules.workout.application.usecases.workout.getworkout;
 
 import com.learning.myfitapp.modules.workout.application.exceptions.WorkoutNotFoundException;
 import com.learning.myfitapp.modules.workout.application.repositories.WorkoutRepository;

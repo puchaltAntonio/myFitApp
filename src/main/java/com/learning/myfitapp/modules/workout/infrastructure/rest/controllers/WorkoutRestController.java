@@ -1,15 +1,12 @@
 package com.learning.myfitapp.modules.workout.infrastructure.rest.controllers;
 
 
-import com.learning.myfitapp.modules.exercise.application.usecases.getexercise.GetExerciseUseCase;
-import com.learning.myfitapp.modules.exercise.infrastructure.rest.responses.ExerciseRestResponse;
-import com.learning.myfitapp.modules.workout.application.usecases.createworkout.CreateWorkoutUseCase;
-import com.learning.myfitapp.modules.workout.application.usecases.createworkout.CreateWorkoutUseCaseRequest;
-import com.learning.myfitapp.modules.workout.application.usecases.deleteworkout.DeleteWorkoutUseCase;
-import com.learning.myfitapp.modules.workout.application.usecases.getworkout.GetWorkoutUseCase;
-import com.learning.myfitapp.modules.workout.application.usecases.updateworkout.UpdateWorkoutUseCase;
-import com.learning.myfitapp.modules.workout.application.usecases.updateworkout.UpdateWorkoutUseCaseRequest;
-import com.learning.myfitapp.modules.workout.domain.models.Workout;
+import com.learning.myfitapp.modules.workout.application.usecases.workout.createworkout.CreateWorkoutUseCase;
+import com.learning.myfitapp.modules.workout.application.usecases.workout.createworkout.CreateWorkoutUseCaseRequest;
+import com.learning.myfitapp.modules.workout.application.usecases.workout.deleteworkout.DeleteWorkoutUseCase;
+import com.learning.myfitapp.modules.workout.application.usecases.workout.getworkout.GetWorkoutUseCase;
+import com.learning.myfitapp.modules.workout.application.usecases.workout.updateworkout.UpdateWorkoutUseCase;
+import com.learning.myfitapp.modules.workout.application.usecases.workout.updateworkout.UpdateWorkoutUseCaseRequest;
 import com.learning.myfitapp.modules.workout.infrastructure.rest.mappers.WorkoutRestMapper;
 import com.learning.myfitapp.modules.workout.infrastructure.rest.requests.WorkoutRestRequest;
 import com.learning.myfitapp.modules.workout.infrastructure.rest.responses.WorkoutRestResponse;

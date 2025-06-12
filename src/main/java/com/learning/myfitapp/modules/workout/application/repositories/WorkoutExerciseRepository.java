@@ -10,5 +10,5 @@ public interface WorkoutExerciseRepository {
     Optional<WorkoutExercise> findById(final UUID id);
     void deleteById(final UUID id);
     Boolean existsById(final UUID id);
-    WorkoutExercise update(final WorkoutExercise workoutexercise);
+    void deleteAllByWorkoutId(final UUID id);
 }

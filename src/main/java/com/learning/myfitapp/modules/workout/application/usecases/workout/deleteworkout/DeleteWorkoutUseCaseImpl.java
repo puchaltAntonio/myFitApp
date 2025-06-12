@@ -1,4 +1,4 @@
-package com.learning.myfitapp.modules.workout.application.usecases.deleteworkout;
+package com.learning.myfitapp.modules.workout.application.usecases.workout.deleteworkout;
 
 import com.learning.myfitapp.modules.exercise.application.exceptions.ExerciseNotFoundException;
 import com.learning.myfitapp.modules.workout.application.exceptions.WorkoutNotFoundException;

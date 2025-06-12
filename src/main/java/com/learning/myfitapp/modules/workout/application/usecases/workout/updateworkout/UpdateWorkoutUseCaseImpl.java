@@ -1,9 +1,11 @@
-package com.learning.myfitapp.modules.workout.application.usecases.updateworkout;
+package com.learning.myfitapp.modules.workout.application.usecases.workout.updateworkout;
 
 import com.learning.myfitapp.modules.profile.application.usecases.getprofile.GetProfileUseCase;
 import com.learning.myfitapp.modules.workout.application.repositories.WorkoutRepository;
-import com.learning.myfitapp.modules.workout.application.usecases.createworkoutexerciseusecase.CreateWorkoutExerciseUseCase;
-import com.learning.myfitapp.modules.workout.application.usecases.createworkoutexerciseusecase.CreateWorkoutExerciseUseCaseRequest;
+import com.learning.myfitapp.modules.workout.application.usecases.workoutexercise.createworkoutexerciseusecase.CreateWorkoutExerciseUseCase;
+import com.learning.myfitapp.modules.workout.application.usecases.workoutexercise.createworkoutexerciseusecase.CreateWorkoutExerciseUseCaseRequest;
+import com.learning.myfitapp.modules.workout.application.usecases.workout.getworkout.GetWorkoutUseCase;
+import com.learning.myfitapp.modules.workout.application.usecases.workoutexercise.deleteallworkoutexercises.DeleteAllWorkoutExercises;
 import com.learning.myfitapp.modules.workout.domain.models.Workout;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,24 +18,28 @@ import java.util.stream.IntStream;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class UpdateWorkoutUseCaseImpl implements UpdateWorkoutUseCase{
+public class UpdateWorkoutUseCaseImpl implements UpdateWorkoutUseCase {
 
     private final WorkoutRepository workoutRepository;
     private final GetProfileUseCase getProfileUseCase;
+    private final GetWorkoutUseCase getWorkoutUseCase;
     private final CreateWorkoutExerciseUseCase createWorkoutExerciseUseCase;
+    private final DeleteAllWorkoutExercises deleteAllWorkoutExerciseUseCase;
 
     @Override
     public Workout updateWorkout(UpdateWorkoutUseCaseRequest request) {
         getProfileUseCase.getProfile(request.getProfileId());
-
+        getWorkoutUseCase.getWorkout(request.getId());
 
         Workout savedWorkout = workoutRepository.save(
                 new Workout(
-                        null,
+                        request.getId(),
                         request.getName(),
                         request.getProfileId()
                 )
         );
+
+        deleteAllWorkoutExerciseUseCase.deleteAllWorkoutExercises(request.getId());
 
         List<UUID> exercisesIds = request.getWorkoutExercisesIds();
 
@@ -42,12 +48,10 @@ public class UpdateWorkoutUseCaseImpl implements UpdateWorkoutUseCase{
             CreateWorkoutExerciseUseCaseRequest useCaseRequest = new CreateWorkoutExerciseUseCaseRequest();
             useCaseRequest.setWorkoutId(savedWorkout.getId());
             useCaseRequest.setExerciseId(id);
-            useCaseRequest.setOrder(i+1);
+            useCaseRequest.setOrder(i + 1);
             createWorkoutExerciseUseCase.createWorkoutExercise(useCaseRequest);
         });
 
-
-
-
+        return savedWorkout;
     }
 }

@@ -43,7 +43,7 @@ public class WorkoutExerciseRepositoryImpl implements WorkoutExerciseRepository 
     }
 
     @Override
-    public WorkoutExercise update(WorkoutExercise workoutexercise) {
-        return null;
+    public void deleteAllByWorkoutId(UUID id) {
+        workoutExerciseJpaRepository.deleteAllByWorkoutId(id);
     }
 }

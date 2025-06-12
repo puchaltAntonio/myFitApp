@@ -1,13 +1,10 @@
-package com.learning.myfitapp.modules.workout.application.usecases.createworkout;
+package com.learning.myfitapp.modules.workout.application.usecases.workout.createworkout;
 
-import com.learning.myfitapp.modules.profile.application.repositories.ProfileRepository;
-import com.learning.myfitapp.modules.profile.application.usecases.createprofile.CreateProfileUseCase;
 import com.learning.myfitapp.modules.profile.application.usecases.getprofile.GetProfileUseCase;
 import com.learning.myfitapp.modules.workout.application.repositories.WorkoutRepository;
-import com.learning.myfitapp.modules.workout.application.usecases.createworkoutexerciseusecase.CreateWorkoutExerciseUseCase;
-import com.learning.myfitapp.modules.workout.application.usecases.createworkoutexerciseusecase.CreateWorkoutExerciseUseCaseRequest;
+import com.learning.myfitapp.modules.workout.application.usecases.workoutexercise.createworkoutexerciseusecase.CreateWorkoutExerciseUseCase;
+import com.learning.myfitapp.modules.workout.application.usecases.workoutexercise.createworkoutexerciseusecase.CreateWorkoutExerciseUseCaseRequest;
 import com.learning.myfitapp.modules.workout.domain.models.Workout;
-import com.learning.myfitapp.modules.workout.domain.models.WorkoutExercise;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

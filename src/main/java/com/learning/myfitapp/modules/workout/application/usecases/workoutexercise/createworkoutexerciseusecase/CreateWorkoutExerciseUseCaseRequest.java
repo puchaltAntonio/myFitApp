@@ -1,4 +1,4 @@
-package com.learning.myfitapp.modules.workout.application.usecases.createworkoutexerciseusecase;
+package com.learning.myfitapp.modules.workout.application.usecases.workoutexercise.createworkoutexerciseusecase;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
