@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+
+info:
+  app:
+    version: '@project.version@'
+    timestamp: '@timestamp@'
+
+
+api:
+  base:
+    url: ${BASE_URL}
+  pagination:
+    page-size: 10
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:}
+    allowed-origin-patterns: ${CORS_ALLOWED_ORIGIN_PATTERNS:*}
+    allowed-methods: ${CORS_ALLOWED_METHODS:GET,POST,PATCH,PUT,DELETE,OPTIONS,HEAD}
+    allowed-headers: ${CORS_ALLOWED_HEADERS:Authorization,Content-type}
+    allow-credentials: ${CORS_ALLOWED_CREDENTIALS:true}
+  auth:
+    cookie:
+      http-only: ${COOKIE_HTTP_ONLY:true}
+      same-site: ${COOKIE_SAME_SITE:Strict}
+      secure: ${COOKIE_SECURE:false}
