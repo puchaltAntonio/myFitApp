@@ -33,10 +33,72 @@ services:
     networks:
       - my-fit-app-dev-net
       - my-fit-app-dev-db-net
+#------------------------------
+# KEYCLOAK SECTION
+
+  my-fit-app-dev-keycloak:
+    image: bitnami/keycloak:21.1.1
+    container_name: mi-fit-app-dev-keycloak
+    user: root
+    ports:
+      - "7000:8080"
+    environment:
+      - KEYCLOAK_DATABASE_HOST=my-fit-app-dev-keycloak-db
+      - KEYCLOAK_DATABASE_PORT=5432
+      - KEYCLOAK_DATABASE_NAME=my-fit-app-dev-keycloak-db
+      - KEYCLOAK_DATABASE_USER=keycloak_user
+      - KEYCLOAK_DATABASE_PASSWORD=password
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=password
+      - KEYCLOAK_USER=user@mail.com
+      - KEYCLOAK_USER_PASSWORD=MyFitApp2025
+      - KEYCLOAK_USER_FIRST_NAME=Jordi
+      - KEYCLOAK_USER_LAST_NAME=Puchalt
+      - KEYCLOAK_REALM_NAME=my-fit-app-dev-realm
+      - KEYCLOAK_BE_CLIENT_NAME=my-fit-app-be-dev-client
+      - KEYCLOAK_FE_CLIENT_NAME=my-fit-app-fe-dev-client
+      - KEYCLOAK_REALM_MANAGEMENT=realm-management
+      - KEYCLOAK_MAILHOG_HOST=my-fit-app-dev-keycloak-mailhog
+      - KEYCLOAK_SMTP_SENDER=sender@example.com
+      - KEYCLOAK_SMTP_RECEIVER=receiver@example.com
+    volumes:
+      - ./scripts/keycloak:/opt/startup
+    command: ["/bin/bash", "-c", "opt/startup/keycloak-entrypoint.sh"]
+    networks:
+      - my-fit-app-dev-net
+      - my-fit-app-dev-keycloak-net
+
+
+  my-fit-app-dev-keycloak-db:
+    image: bitnami/postgresql:15.3.0
+    container_name: my-fit-app-dev-keycloak-db
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=keycloak_user
+      - POSTGRES_DB=my-fit-app-dev-keycloak-db
+    volumes:
+      - my-fit-app-dev-keycloak-db-volume:/bitnami/postgresql
+    networks:
+      - my-fit-app-dev-net
+      - my-fit-app-dev-keycloak-net
+
+
+  my-fit-app-dev-keycloak-mailhog:
+    image: mailhog/mailhog
+    container_name: my-fit-app-dev-keycloak-mailhog
+    ports:
+      - "8025:8025"
+    networks:
+      - my-fit-app-dev-net
+      - my-fit-app-dev-keycloak-net
+
+
 
 volumes:
   my-fit-app-dev-db-volume:
   my-fit-app-dev-pgadmin-volume:
+  my-fit-app-dev-keycloak-db-volume:
 networks:
   my-fit-app-dev-net:
   my-fit-app-dev-db-net:
+  my-fit-app-dev-keycloak-net:
