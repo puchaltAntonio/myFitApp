@@ -11,6 +11,8 @@ public interface ProfileRestMapper {
     ProfileRestMapper INSTANCE = Mappers.getMapper(ProfileRestMapper.class);
 
     @Mapping(target = "id", source = "id")
-    @Mapping(target = "username", source = "username")
+    @Mapping(target = "name", source = "name")
+    @Mapping(target = "surname", source = "surname")
+    @Mapping(target = "email", source = "email")
     ProfileRestResponse profileToResponse(final Profile profile);
 }

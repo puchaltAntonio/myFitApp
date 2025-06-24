@@ -4,6 +4,8 @@ import lombok.Builder;
 
 @Builder
 public record ProfileRestRequest(
-        String username
+        String name,
+        String surname,
+        String email
 ) {
 }

@@ -14,26 +14,45 @@ public class Profile {
 
     private UUID id;
 
-    private String username;
+    private String name;
+    
+    private String surname;
+    
+    private String email;
 
 
-    public Profile(UUID id, String username) {
+    public Profile(UUID id,
+                   String name,
+                   String surname,
+                   String email
+    ) {
 
-        validateConstraints(username);
+        validateConstraints(name, surname);
 
         this.id = id;
-        this.username = username;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
     }
 
-    public static void validateConstraints(String username){
+    public static void validateConstraints(String name, String surname){
         final List<DomainErrorField> errors = new ArrayList<>();
 
-        if (username == null || username.isBlank()) {
-            errors.add(new DomainErrorField("username", "Username can not be blank."));
+        if (name == null || name.isBlank()) {
+            errors.add(new DomainErrorField("name", "name can not be blank."));
         }
-        if (username != null && username.length() > 60) {
-            errors.add(new DomainErrorField("username", "Username's max length is 60 characters."));
+        if (name != null && name.length() > 60) {
+            errors.add(new DomainErrorField("name", "name's max length is 60 characters."));
         }
+
+        if (surname == null || surname.isBlank()) {
+            errors.add(new DomainErrorField("surname", "surname can not be blank."));
+        }
+        if (surname != null && surname.length() > 60) {
+            errors.add(new DomainErrorField("surname", "surname's max length is 60 characters."));
+        }
+
+        //TODO: Check email?
 
         if (!errors.isEmpty()) {
             throw new DomainValidationException(errors);

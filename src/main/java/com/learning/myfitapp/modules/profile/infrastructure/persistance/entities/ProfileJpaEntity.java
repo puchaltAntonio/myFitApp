@@ -22,15 +22,22 @@ public class ProfileJpaEntity {
     public static final String TABLE_NAME = "profile";
 
     public static final String ID_COL = "id";
-    public static final String USERNAME_COL = "username";
+    public static final String NAME_COL = "name";
+    public static final String SURNAME_COL = "surname";
+    public static final String EMAIL_COL = "email";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = ID_COL)
     private UUID id;
 
-    @Column(name = USERNAME_COL)
-    private String username;
+    @Column(name = NAME_COL, nullable = false)
+    private String name;
+
+    @Column(name = SURNAME_COL, nullable = false)
+    private String surname;
+
+    @Column(name = EMAIL_COL, nullable = false)
+    private String email;
 
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
     private List<WorkoutJpaEntity> workouts = new ArrayList<>();
