@@ -1,4 +1,6 @@
 CREATE TABLE profile (
     id UUID PRIMARY KEY,
-    username VARCHAR(255)
+    name VARCHAR(255) NOT NULL,
+    surname VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL
 );

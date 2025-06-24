@@ -1,6 +1,7 @@
 package com.learning.myfitapp.modules.workout.application.usecases.workout.createworkout;
 
 import com.learning.myfitapp.modules.profile.application.usecases.getprofile.GetProfileUseCase;
+import com.learning.myfitapp.modules.profile.domain.models.Profile;
 import com.learning.myfitapp.modules.workout.application.repositories.WorkoutRepository;
 import com.learning.myfitapp.modules.workout.application.usecases.workoutexercise.createworkoutexerciseusecase.CreateWorkoutExerciseUseCase;
 import com.learning.myfitapp.modules.workout.application.usecases.workoutexercise.createworkoutexerciseusecase.CreateWorkoutExerciseUseCaseRequest;
@@ -25,14 +26,14 @@ public class CreateWorkoutUseCaseImpl implements CreateWorkoutUseCase{
     @Override
     public Workout createWorkout(CreateWorkoutUseCaseRequest request) {
 
-        getProfileUseCase.getProfile(request.getProfileId());
+        final Profile profile = getProfileUseCase.getProfile(request.getGetProfileUseCaseRequest());
 
 
         Workout savedWorkout = workoutRepository.save(
                 new Workout(
                         null,
                         request.getName(),
-                        request.getProfileId()
+                        profile.getId()
                 )
         );
 

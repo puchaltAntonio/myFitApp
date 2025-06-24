@@ -4,6 +4,8 @@ import java.util.UUID;
 
 public record ProfileRestResponse(
         UUID id,
-        String username
+        String name,
+        String surname,
+        String email
 ) {
 }

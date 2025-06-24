@@ -1,9 +1,11 @@
 package com.learning.myfitapp.modules.workout.infrastructure.rest.controllers;
 
 
+import com.learning.myfitapp.common.audit.AuditorAwareImpl;
 import com.learning.myfitapp.modules.workout.application.usecases.workout.createworkout.CreateWorkoutUseCase;
 import com.learning.myfitapp.modules.workout.application.usecases.workout.createworkout.CreateWorkoutUseCaseRequest;
 import com.learning.myfitapp.modules.workout.application.usecases.workout.deleteworkout.DeleteWorkoutUseCase;
+import com.learning.myfitapp.modules.workout.application.usecases.workout.deleteworkout.DeleteWorkoutUseCaseRequest;
 import com.learning.myfitapp.modules.workout.application.usecases.workout.getworkout.GetWorkoutUseCase;
 import com.learning.myfitapp.modules.workout.application.usecases.workout.updateworkout.UpdateWorkoutUseCase;
 import com.learning.myfitapp.modules.workout.application.usecases.workout.updateworkout.UpdateWorkoutUseCaseRequest;
@@ -40,6 +42,7 @@ public class WorkoutRestController {
     private final DeleteWorkoutUseCase deleteWorkoutUseCase;
     private final GetWorkoutUseCase getWorkoutUseCase;
     private final UpdateWorkoutUseCase updateWorkoutUseCase;
+    private final AuditorAwareImpl auditorAwareImpl;
 
 
     @PostMapping
@@ -47,12 +50,11 @@ public class WorkoutRestController {
     public ResponseEntity<WorkoutRestResponse> createWorkout(
             @Valid @RequestBody final WorkoutRestRequest request
     ) {
-        final CreateWorkoutUseCaseRequest useCaseRequest = new CreateWorkoutUseCaseRequest();
-
-        useCaseRequest.setName(request.name());
-        useCaseRequest.setWorkoutExercisesIds(request.exercisesIds());
-        useCaseRequest.setProfileId(request.profileId());
-
+        final CreateWorkoutUseCaseRequest useCaseRequest = new CreateWorkoutUseCaseRequest(
+                auditorAwareImpl.getTokenOrThrowError(),
+                request.name(),
+                request.exercisesIds()
+        );
         final WorkoutRestResponse response = WORKOUT_REST_MAPPER.workoutToResponse(
             createWorkoutUseCase.createWorkout(useCaseRequest)
         );
@@ -72,7 +74,12 @@ public class WorkoutRestController {
     public ResponseEntity<WorkoutRestResponse> deleteWorkoutById(
             @PathVariable final UUID id
     ) {
-        deleteWorkoutUseCase.deleteWorkout(id);
+        DeleteWorkoutUseCaseRequest request = new DeleteWorkoutUseCaseRequest(
+                auditorAwareImpl.getTokenOrThrowError(),
+                id
+        );
+
+        deleteWorkoutUseCase.deleteWorkout(request);
         return ResponseEntity.noContent().build();
     }
 
@@ -93,12 +100,12 @@ public class WorkoutRestController {
             @PathVariable final UUID id, @RequestBody final WorkoutRestRequest request
     ) {
 
-        UpdateWorkoutUseCaseRequest updateWorkoutUseCaseRequest = new UpdateWorkoutUseCaseRequest();
-
-        updateWorkoutUseCaseRequest.setId(id);
-        updateWorkoutUseCaseRequest.setName(request.name());
-        updateWorkoutUseCaseRequest.setProfileId(request.profileId());
-        updateWorkoutUseCaseRequest.setWorkoutExercisesIds(request.exercisesIds());
+        UpdateWorkoutUseCaseRequest updateWorkoutUseCaseRequest = new UpdateWorkoutUseCaseRequest(
+                auditorAwareImpl.getTokenOrThrowError(),
+                request.name(),
+                request.exercisesIds(),
+                id
+        );
 
         WorkoutRestResponse response = WORKOUT_REST_MAPPER.workoutToResponse(
                 updateWorkoutUseCase.updateWorkout(updateWorkoutUseCaseRequest)

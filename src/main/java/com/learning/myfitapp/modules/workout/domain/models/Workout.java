@@ -29,6 +29,10 @@ public class Workout {
         this.profileId = profileId;
     }
 
+    public boolean belongsTo(final UUID profileId) {
+        return this.profileId != null && this.profileId.equals(profileId);
+    }
+
     public static void validateConstraints(String name) {
         final List<DomainErrorField> errors = new ArrayList<>();
 
