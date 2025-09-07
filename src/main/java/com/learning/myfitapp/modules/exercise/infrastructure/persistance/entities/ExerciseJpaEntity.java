@@ -24,7 +24,7 @@ public class ExerciseJpaEntity {
     public static final String NAME_COL = "name";
     public static final String PRIMARY_MUSCLE_COL = "primary_muscle";
     public static final String SECONDARY_MUSCLE_COL = "secondary_muscle";
-    public static final String EQUIPMENT = "equipment";
+    public static final String EQUIPMENT_COL = "equipment";
     public static final String EXERCISE_ANIMATION = "exercise_animation";
 
     @Id
@@ -44,7 +44,7 @@ public class ExerciseJpaEntity {
     private MuscleEnum secondaryMuscle;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = EQUIPMENT, nullable = false)
+    @Column(name = EQUIPMENT_COL, nullable = false)
     private EquipmentEnum equipment;
 
     @Column(name = EXERCISE_ANIMATION)
