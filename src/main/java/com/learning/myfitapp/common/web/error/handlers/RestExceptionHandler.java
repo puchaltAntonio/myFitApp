@@ -1,7 +1,9 @@
-package com.learning.myfitapp.common.web.error;
+package com.learning.myfitapp.common.web.error.handlers;
 
 import com.learning.myfitapp.common.application.exception.ApplicationException;
 import com.learning.myfitapp.common.domain.exception.DomainValidationException;
+import com.learning.myfitapp.common.web.error.ApiErrorResponse;
+import com.learning.myfitapp.common.web.error.ApiParamErrorField;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

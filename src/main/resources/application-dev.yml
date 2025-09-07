@@ -21,3 +21,18 @@ spring:
             non_contextual_creation: true
           order_inserts: true
     show-sql: true
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_SERVER_URL_EXTERNAL}/realms/${KEYCLOAK_REALM_NAME}
+          jwk-set-uri: ${KEYCLOAK_SERVER_URL}/realms/${KEYCLOAK_REALM_NAME}/protocol/openid-connect/certs
+
+
+api:
+  keycloak:
+    server-url: ${KEYCLOAK_SERVER_URL}
+    realm-name: ${KEYCLOAK_REALM_NAME}
+    client-id: ${KEYCLOAK_CLIENT_ID}
+    secret: ${KEYCLOAK_CLIENT_SECRET}
