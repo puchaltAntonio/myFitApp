@@ -17,6 +17,7 @@ public class Workout {
 
     private UUID profileId;
 
+    private List<UUID> workoutExerciseList = new ArrayList<>();
 
     public Workout(UUID id, String name, UUID profileId) {
 

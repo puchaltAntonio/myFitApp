@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface WorkoutExerciseJpaRepository extends JpaRepository<WorkoutExerciseJpaEntity, UUID>, JpaSpecificationExecutor<WorkoutExerciseJpaRepository> {
@@ -13,4 +14,8 @@ public interface WorkoutExerciseJpaRepository extends JpaRepository<WorkoutExerc
     @Modifying
     @Transactional
     void deleteAllByWorkoutId(final UUID id);
+
+    @Modifying
+    @Transactional
+    List<WorkoutExerciseJpaEntity> findAllByWorkoutId(final UUID id);
 }

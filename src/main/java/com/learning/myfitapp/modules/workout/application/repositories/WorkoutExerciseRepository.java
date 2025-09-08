@@ -2,6 +2,7 @@ package com.learning.myfitapp.modules.workout.application.repositories;
 
 import com.learning.myfitapp.modules.workout.domain.models.WorkoutExercise;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -11,4 +12,5 @@ public interface WorkoutExerciseRepository {
     void deleteById(final UUID id);
     Boolean existsById(final UUID id);
     void deleteAllByWorkoutId(final UUID id);
+    List<WorkoutExercise> findAllByWorkoutId(final UUID id);
 }

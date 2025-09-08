@@ -8,6 +8,7 @@ import com.learning.myfitapp.modules.workout.infrastructure.persistance.reposito
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -34,16 +35,21 @@ public class WorkoutExerciseRepositoryImpl implements WorkoutExerciseRepository 
 
     @Override
     public void deleteById(UUID id) {
-
+        workoutExerciseJpaRepository.deleteById(id);
     }
 
     @Override
     public Boolean existsById(UUID id) {
-        return null;
+        return workoutExerciseJpaRepository.existsById(id);
     }
 
     @Override
     public void deleteAllByWorkoutId(UUID id) {
         workoutExerciseJpaRepository.deleteAllByWorkoutId(id);
+    }
+
+    @Override
+    public List<WorkoutExercise> findAllByWorkoutId(UUID id) {
+        return workoutExerciseJpaRepository.findAllByWorkoutId(id).stream().map(WORKOUT_EXERCISE_JPA_MAPPER::jpaToDomain).toList();
     }
 }

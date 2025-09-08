@@ -7,9 +7,10 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
-public interface WorkoutRestMapper {
+public interface
+WorkoutRestMapper {
     WorkoutRestMapper INSTANCE = Mappers.getMapper(WorkoutRestMapper.class);
 
-    @Mapping(target = "exercisesIds", ignore = true)
+    @Mapping(target = "exercisesIds", source = "workoutExerciseList")
     WorkoutRestResponse workoutToResponse(final Workout workout);
 }
